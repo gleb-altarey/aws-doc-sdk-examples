@@ -23,21 +23,7 @@ const initializeHandler = async () => {
   try {
     /** snippet-start:[javascript.v3.lambda.scenarios.basic.CreateRole] */
     log(`Creating role (${NAME_ROLE_LAMBDA})...`);
-    const response = await createRole({
-      AssumeRolePolicyDocument: parseString({
-        Version: "2012-10-17",
-        Statement: [
-          {
-            Effect: "Allow",
-            Principal: {
-              Service: "lambda.amazonaws.com",
-            },
-            Action: "sts:AssumeRole",
-          },
-        ],
-      }),
-      RoleName: NAME_ROLE_LAMBDA,
-    });
+    const response = await createRole(NAME_ROLE_LAMBDA);
     /** snippet-end:[javascript.v3.lambda.scenarios.basic.CreateRole] */
 
     log(
@@ -48,7 +34,7 @@ const initializeHandler = async () => {
       `Attaching policy ${ARN_POLICY_LAMBDA_BASIC_EXECUTION} to ${NAME_ROLE_LAMBDA}...`
     );
 
-    await attachRolePolicy(NAME_ROLE_LAMBDA, ARN_POLICY_LAMBDA_BASIC_EXECUTION);
+    await attachRolePolicy(ARN_POLICY_LAMBDA_BASIC_EXECUTION, NAME_ROLE_LAMBDA);
 
     log(
       `${ARN_POLICY_LAMBDA_BASIC_EXECUTION} successfully attached to ${NAME_ROLE_LAMBDA}`

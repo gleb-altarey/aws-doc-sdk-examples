@@ -55,8 +55,8 @@ const cleanUpHandler = async () => {
 
     log("Removing policy from role created during initialization.");
     await cleanUpRolePolicy(
+      ARN_POLICY_LAMBDA_BASIC_EXECUTION,
       NAME_ROLE_LAMBDA,
-      ARN_POLICY_LAMBDA_BASIC_EXECUTION
     );
 
     log("Deleting role created during initialization.");
